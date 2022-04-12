@@ -6,7 +6,7 @@
 // @match       http*://localhost:32400/*
 // @grant       GM_addStyle
 // @grant       GM_getResourceText
-// @version 0.1
+// @version 0.2
 // @namespace https://runningwithscissors-vr.com
 // @license none, enjoy
 // ==/UserScript==
@@ -27,10 +27,10 @@ var css = `
   position: fixed;
   bottom: 5px;
   left: 5px;
-  background: rgba(255, 255, 255, .8);
+  background: black;
   padding: 3px;
   border-radius: 20px;
-  color: black;
+  color: yellow;
   z-index: 10000000;
 }
 `;
@@ -134,11 +134,13 @@ function main() {
             var title = titleElement.textContent;
             //console.log("title = " + title);
             var duration = document.querySelector('[data-testid="mediaDuration"]');
+            var year = document.querySelector('[data-testid="metadataYear"]').textContent;
+
             title = title.replace("▶ ", "");
             var timeArray = duration.textContent.split("/");
             var timePercentage = calculatePercentageTime(timeArray)
 
-            newElements.tooltip.innerHTML = title + ' ' + duration.textContent + ' ' + timePercentage + '%';
+            newElements.tooltip.innerHTML = title + ' (' + year + ') ' + duration.textContent + ' ' + timePercentage + '%';
 
             //console.log ("Duration:" + duration.textContent);
         }
